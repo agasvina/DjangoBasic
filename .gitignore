@@ -1,0 +1,9 @@
+*.DS_Store
+bin/
+include/
+lib/
+static_cdn/
+*__pycache__/
+*migrations/
+*.sqlite3
+*.csv
