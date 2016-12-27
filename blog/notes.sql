@@ -14,4 +14,14 @@ select platform, avg([NA_Sales]) as 'Average', avg([JP_Sales]) as 'av_jp' from s
 -- Dont forget to import Avg
 -- from django.db.models import Avg
 -- Sales.objects.filter(platform__in =['PS3', 'PC']).values('platform').annotate(na_sales = Avg('na_sales'), jp_sales=Avg('jp_sales'))
-`
+
+
+select sum(na_sales), year_of_release, platform  from sales  where platform in ('PS3', 'PS4', 'PC', 'X360') group by year_of_release, platform
+-- Sales.objects.filter(platform__in =['PS3', 'PC']).values('platform','year_of_release').annotate(total = Sum(F('na_sales') + F('jp_sales')))
+-- Sales.objects.filter(platform__in =['PS3', 'PC']).values('platform','year_of_release').annotate(
+-- 	na_sales = Sum('na_sales'),
+-- 	jp_sales = Sum('jp_sales'),
+-- 	eu_sales = Sum('eu_sales'),
+-- 	other_sales = Sum('other_sales'),
+-- 	global_sales = Sum('global_sales'),
+-- ).all()
