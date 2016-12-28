@@ -5,7 +5,9 @@ from django.contrib import admin
 
 from rest_framework_jwt.views import obtain_jwt_token
 
+
 from django.views.generic.base import TemplateView
+from ang.views import AngularTemplateView
 
 from accounts.views import (
     login_view,
@@ -27,6 +29,9 @@ urlpatterns = [
     url(r'^api/user/', include('accounts.api.urls', namespace='user-api')),
     url(r'^api/todo/', include('todos.api.urls', namespace='todo-api')),
     url(r'^api/kaggle/', include('kaggle.api.urls', namespace='kaggle-api')),
+
+    #Serving angular template:
+    url(r'^api/templates/(?P<item>[A-Za-z0-9\_\-\.\/]+)\.html$',  AngularTemplateView.as_view())
 ]
 
 if settings.DEBUG:
@@ -35,4 +40,5 @@ if settings.DEBUG:
 
 urlpatterns += [
     url(r'', TemplateView.as_view(template_name='ang/index.html')),
+
 ]

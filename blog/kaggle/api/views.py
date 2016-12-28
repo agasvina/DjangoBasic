@@ -38,6 +38,8 @@ def total_games(request):
 def get_sales_summary(request):
     temp = {}
     region = request.query_params.get('region')
+    min_year = request.query_params.get('min_year')
+    max_year = request.query_params.get('max_year')
     platforms = request.GET.getlist('platform', '')
     form = request.query_params.get('form')
 
@@ -48,25 +50,46 @@ def get_sales_summary(request):
         result_qs = Sales.objects.filter(platform__in =platforms).values('platform','year_of_release').annotate(
                         sales = Sum(region),).all() 
     else:
+        platforms = [x['platform']  for x in Sales.objects.values('platform').distinct().all()]
         result_qs = Sales.objects.values('platform','year_of_release').annotate(
                         sales = Sum(region),).all() 
-    if form == 'd3':
-        res = [helper(temp, x) for x in result_qs]
-        return Response(temp.values(), status=HTTP_200_OK)
+    if form == 'd3':    
+        #We need to clean the data:
+        pl = {}
+        result = {}
+        for platform in platforms:
+            pl[platform] = {}
+            for x in range(int(min_year),int(max_year)+1):
+                pl[platform][str(x)] = False;
+        res = [helper(temp, x, pl) for x in result_qs]
+        #Clean data:
+        for platform in platforms:
+            result[platform] = {
+                "key": platform,
+                "values": []
+            }
+            for x in range(int(min_year),int(max_year)+1):
+                if pl[platform][str(x)] == False:
+                    result[platform]['values'].append({
+                        'y': 0,
+                        'x': x,
+                    })
+                else:
+                    result[platform]['values'].append({
+                        'y': temp[platform][str(x)],
+                        'x': x,
+                    })
+        return Response(result.values(), status=HTTP_200_OK)
     else:
         res = [x for x in result_qs]
         return Response(res, status=HTTP_200_OK)
 
-def helper(temp, data):
+def helper(temp, data, pl):
     key = data['platform']
+    year = data['year_of_release']
     if key not in temp:
-        temp[key] = {
-            "key": key,
-            "values": []
-        }
-    if data['year_of_release'] > 0:
-        temp[key]['values'].append({
-            'x': data['sales'],
-            'y': data['year_of_release'],
-        })
+        temp[key] = {}
+    if year > 0:
+        pl[key][str(year)]= True
+        temp[key][str(year)] = data['sales']
 

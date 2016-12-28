@@ -4,7 +4,17 @@
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{% static '/css/dashboard.css' %}" >
-	<title>Agastya Silvina</title>
+	<title>Hello there.. somebody I don't know</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js'></script>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.9/angular-nvd3.min.js"></script> 
+  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.css">
 </head>
 <body>
 	 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -36,10 +46,8 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
+            <li><a href="/bar-chart">Total games</a></li>
+            <li><a href="/total-sales">Sales Report</a></li>
           </ul>
         </div>
 
@@ -47,7 +55,7 @@
         {% verbatim %}
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="main">
-          <h1 class="page-header">{{name}}</h1>
+          <div ng-view></div>
         </div>
 
         {% endverbatim %}
@@ -56,7 +64,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js'></script>
     <script type="text/javascript" src="{% static '/js/app.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/components/bar.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/components/total-sales.js' %}"></script>
+
 </body>
 </html>
