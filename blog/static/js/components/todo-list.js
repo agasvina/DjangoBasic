@@ -51,6 +51,7 @@ angular.module('todoList', [])
 
 
     $scope.doCreate = function(){
+      $scope.verifyToken()
       var requestConfig = {
         method : "POST",
         url: todoListUrl+"create/",
@@ -90,6 +91,23 @@ angular.module('todoList', [])
       })
     }
 
+    $scope.verifyToken = function() {
+      var url = "/api-token-verify/"
+      var requestConfig = {
+        method : "POST",
+        url: url,
+        data: {
+          "token": $cookies.get("token")
+        }
+      }
+      var requestAction = $http(requestConfig)
+      requestAction.success(function(r_data, r_status, r_headers, r_config){
+         //TOKEN FINE
+      })
+      requestAction.error(function(r_data, r_status, r_headers, r_config){
+        $location.path("/login")
+      })
+    }
 
 
     if(tokenExists) {

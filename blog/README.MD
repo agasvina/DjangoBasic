@@ -7,6 +7,9 @@ curl -X POST -d "username=luca&password=agas1234" http://localhost:8000/api-toke
 curl -H "Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IiIsInVzZXJfaWQiOjEsImV4cCI6MTQ4Mjc5NDMzOCwidXNlcm5hbWUiOiJsdWNhIn0.qRX1WROM2G4w3gp7r4c-qoZqIZ90ws68R1pZbHBUXoY" http://localhost:8000/api/todo/
 
 
+curl -X POST -H "Content-Type: application/json" -d '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6IiIsIm9yaWdfaWF0IjoxNDgyOTAyMTkyLCJ1c2VybmFtZSI6Imx1Y2EiLCJleHAiOjE0ODI5MDI0OTJ9.58m4nSncTh0hig0A9x2SEfGxgxd9yem6ynzCP4rDqqo"}' http://localhost:8000/api-token-refresh/
+
+
 docker stop $(docker ps -a -q);docker rm $(docker ps -a -q)
 
 docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Super@secret1234' -p 8888:1433  -d microsoft/mssql-server-linux

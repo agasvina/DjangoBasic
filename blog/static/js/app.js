@@ -17,7 +17,6 @@ angular.module("app", [
      //Verify token:
      $scope.userLoggedIn = true
      $scope.name = $cookies.get("username");
-     console.log($scope.userLoggedIn)
     } else {
       $scope.userLoggedIn = false;
     }
