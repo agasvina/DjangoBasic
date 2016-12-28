@@ -1,0 +1,31 @@
+<h4><b>Create a new TODO</b></h4>
+<form>
+  <div class="form-group">
+    <input type="text" class="form-control" ng-model="newTodo.todo">
+  </div>
+  <label class="radio-inline">
+    <input type="radio" name="inlineRadioOptions" value="W" ng-model="newTodo.category"> <span> <span class="glyphicon glyphicon-book" aria-hidden="true"></span> work</span>
+  </label>
+  <label class="radio-inline">
+    <input type="radio" name="inlineRadioOptions" value="L" ng-model="newTodo.category"> <span><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> leissure </span>
+  </label>
+  <label class="radio-inline">
+    <input type="radio" name="inlineRadioOptions" value="O" ng-model="newTodo.category"> <span> <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> undefined </span>
+  </label>
+  <br/><br/>
+  <button ng-click="doCreate(todo)" type="submit" class="btn btn-primary">Create</button>
+</form>
+
+
+<h4><b>Have you....?</b></h4>
+<div style="margin: 20px;" ng-repeat="todo in todos">
+    <p><b>{{todo.todo}}</b></p>
+    <div><span>category: 
+    <span ng-show="{{todo.category=='W'}}"> <span class="glyphicon glyphicon-book" aria-hidden="true"></span> work  </span>
+    <span ng-show="{{todo.category=='L'}}"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> leissure </span>
+    <span ng-show="{{todo.category=='O'}}"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> undefined </span>
+    </span><br/></div>
+    <input type="checkbox" name="completed" ng-model="todo.completed"> completed <br/><br/>
+    <button type="submit" class="btn btn-default" ng-click="doSave(todo)">Save</button>
+    <button type="submit" class="btn btn-danger" ng-click="doDelete(todo)">Delete</button>
+</div>
