@@ -18,7 +18,7 @@
 
 
 <h4><b>Have you....?</b></h4>
-<div style="margin: 20px;" ng-repeat="todo in todos">
+<div style="margin: 20px;" ng-repeat="todo in todos | filter: todo.completed == false">
     <p><b>{{todo.todo}}</b></p>
     <div><span>category: 
     <span ng-show="{{todo.category=='W'}}"> <span class="glyphicon glyphicon-book" aria-hidden="true"></span> work  </span>
