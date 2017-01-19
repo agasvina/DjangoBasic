@@ -7,6 +7,7 @@ angular.module("app", [
 	'totalSales',
   'todoList',
   'loginDetail',
+  'eventTimeline',
 ])
 .controller("main", function($scope, $cookies) {
   $scope.name = "";
@@ -35,6 +36,9 @@ angular.module("app", [
     // when("/bar-chart", {
     //   template: "<bar-chart></bar-chart>"
     // }).
+    when("/timeline", {
+      template: "<event-timeline></event-timeline>"
+    }).
     // when("/total-sales", {
     //   template: "<total-sales></total-sales>"
     // }).

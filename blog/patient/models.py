@@ -174,7 +174,6 @@ class Followup(models.Model):
     episode = models.IntegerField(db_column='EPISODE', blank=True, null=True)  # Field name made lowercase.
     fudate = models.TextField(db_column='FUDATE', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
     futype = models.ForeignKey('Futypelut', db_column='FUTYPE', to_field='code', blank=True, null=True)
-    # futype = models.IntegerField(db_column='FUTYPE', blank=True, null=True)  # Field name made lowercase.
     primstat = models.FloatField(db_column='PRIMSTAT', blank=True, null=True)  # Field name made lowercase.
     nodestat = models.FloatField(db_column='NODESTAT', blank=True, null=True)  # Field name made lowercase.
     metastat = models.FloatField(db_column='METASTAT', blank=True, null=True)  # Field name made lowercase.
