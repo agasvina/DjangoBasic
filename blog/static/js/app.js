@@ -32,12 +32,12 @@ angular.module("app", [
     when("/", {
       template: "<todo-list></todo-list>"
     }).
-    when("/bar-chart", {
-      template: "<bar-chart></bar-chart>"
-    }).
-    when("/total-sales", {
-      template: "<total-sales></total-sales>"
-    }).
+    // when("/bar-chart", {
+    //   template: "<bar-chart></bar-chart>"
+    // }).
+    // when("/total-sales", {
+    //   template: "<total-sales></total-sales>"
+    // }).
     when("/login", {
       template: "<login-detail></login-detail>"
     }).

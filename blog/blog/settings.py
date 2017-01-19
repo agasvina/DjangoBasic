@@ -41,7 +41,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'todos',
-    'kaggle',
+    # 'kaggle',
+    'patient',
 ]
 
 MIDDLEWARE = [
@@ -84,23 +85,27 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-    'kaggle': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'kaggle',
-        'USER': 'sa',
-        'PASSWORD': 'Super@secret1234',
-        'HOST': 'localhost',
-        'PORT': '8888',
-        'OPTIONS' : {
-            'driver': 'FreeTDS',
-            'unicode_results': True,
-            'host_is_server': True,
-            'extra_params': 'tds_version=7.3;',
-        }
+    'patient': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'sampleData.sqlite3'),
     }
+    # 'kaggle': {
+    #     'ENGINE': 'sql_server.pyodbc',
+    #     'NAME': 'kaggle',
+    #     'USER': 'sa',
+    #     'PASSWORD': 'Super@secret1234',
+    #     'HOST': 'localhost',
+    #     'PORT': '8888',
+    #     'OPTIONS' : {
+    #         'driver': 'FreeTDS',
+    #         'unicode_results': True,
+    #         'host_is_server': True,
+    #         'extra_params': 'tds_version=7.3;',
+    #     }
+    # }
 }
 
-DATABASE_ROUTERS = ['kaggle.router.KaggleRouter',]
+DATABASE_ROUTERS = ['patient.router.PatientRouter',]
 
 
 # Password validation
