@@ -30,7 +30,7 @@ urlpatterns = [
 
     url(r'^api/user/', include('accounts.api.urls', namespace='user-api')),
     url(r'^api/todo/', include('todos.api.urls', namespace='todo-api')),
-    # url(r'^api/kaggle/', include('kaggle.api.urls', namespace='kaggle-api')),        
+    url(r'^api/kaggle/', include('kaggle.api.urls', namespace='kaggle-api')),        
     url(r'^api/patient/', include('patient.api.urls', namespace='patient-api')),
 
 
